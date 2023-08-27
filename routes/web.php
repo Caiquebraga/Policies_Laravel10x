@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InvoiceController;
 
 
 /*
@@ -17,3 +18,6 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::post('/invoices', [InvoiceController::class, 'store'])->name('invoice.store');
+Route::put('/invoices{invoice}', [InvoiceController::class, 'update'])->name('invoice.update')
+->middleware('can:isAdmin,invoice');

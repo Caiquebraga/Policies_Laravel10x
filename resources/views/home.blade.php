@@ -10,26 +10,10 @@
 
 <body>
     <h2>Invoices</h2>
-    @can('isAdmin', 'App/Models/Invoice')
-    <a href="">Create Invoice</a>
-    @endcan
-    <ul>
-        @foreach ($invoices as $invoice)
-       
-        <li>
-            {{ $invoice->user->firstName }} - $ {{ number_format($invoice->value, 2, ',', '.') }}
-            @can('edit', $invoice)
-            <a href="">Edit</a>
-            @endcan
-
-            @can('delete', $invoice)
-            <a href="">Edit</a>
-            @endcan
-        </li>
-        
-        @endforeach
-
-    </ul>
+    <form action="{{ route('invoice.store') }}" method="post">
+     @csrf
+     <button type="submit">Create Invoice</button>
+    </form>
 </body>
 
 </html>
